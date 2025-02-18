@@ -38,6 +38,7 @@ class ScreenPVSet(PVSet):
     n_row: PV
     n_bits: PV
     resolution: PV
+    shutter: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -118,6 +119,11 @@ class Screen(Device):
     def resolution(self):
         """The conversion factor of pixels to mm"""
         return self.controls_information.PVs.resolution.get()
+
+    @property
+    def refresh_rate(self):
+        """The refresh rate of the images taken by the camera"""
+        return self.controls_information.PVs.refresh_rate.get()
 
     @property
     def last_save_filepath(self):
